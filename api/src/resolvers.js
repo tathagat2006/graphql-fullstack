@@ -5,11 +5,16 @@
 
 module.exports = {
   Query: {
-
+    pets(_, { input }, ctx) {
+      return ctx.models.Pet.findMany(input)
+    },
+    pet(_, { input }, ctx) {
+      return ctx.models.Pet.findOne(input)
+    }
   },
-  Mutation: {
+  // Mutation: {
 
-  },
+  // },
   Pet: {
     img(pet) {
       return pet.type === 'DOG'
