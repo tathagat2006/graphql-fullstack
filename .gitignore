@@ -1,4 +1,4 @@
 node_modules/
 .vscode/
-yarn.lock/
+yarn.lock
 package-lock.json
