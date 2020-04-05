@@ -1,26 +1,29 @@
 {
   "user": {
     "id": "jBWMVGjm50l6LGwepDoty",
-    "username": "frontendmaster"
+    "username": "Tathagat Thapliyal"
   },
   "pet": [
     {
       "id": "1",
       "createdAt": "123456784",
       "name": "Moose",
-      "type": "DOG"
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
       "id": "string",
       "createdAt": "9876543223",
       "name": "Daryl",
-      "type": "CAT"
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
       "id": "BgeV73m38a8F_I_YJVfoc",
       "createdAt": 1586104024811,
       "name": "Max",
-      "type": "DOG"
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]
 }

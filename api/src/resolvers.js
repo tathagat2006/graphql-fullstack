@@ -9,6 +9,7 @@ module.exports = {
       return ctx.models.Pet.findMany(input)
     },
     pet(_, { input }, ctx) {
+      console.log('QUERY => owner')
       return ctx.models.Pet.findOne(input)
     }
   },
@@ -23,6 +24,13 @@ module.exports = {
       return pet.type === 'DOG'
         ? 'https://placedog.net/300/300'
         : 'http://placekitten.com/300/300'
+    },
+    //OWNER is a field level resolver
+    owner(pet, __, ctx) {
+      console.log('PET => owner')
+      //IN REAL SSCENARIO
+      // ctx.models.User.findById(pet.user) 
+      return ctx.models.User.findOne()
     }
   },
   User: {
