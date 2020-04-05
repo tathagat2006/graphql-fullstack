@@ -7,5 +7,5 @@ An application to track all your pets using GraphQL, NodeJS &amp; ReactJS.
 * Node version >= 6
 
 ## Running Application
-*yarn
-*yarn server
+* yarn
+* yarn server
