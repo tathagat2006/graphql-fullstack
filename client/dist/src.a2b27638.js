@@ -50440,12 +50440,36 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const ALL_PETS = (0, _graphqlTag.default)`
+  query FetchPets {
+    pets {
+      id
+      name
+      type
+      img      
+    }
+  }
+`;
+
 function Pets() {
   const [modal, setModal] = (0, _react.useState)(false);
+  const {
+    data,
+    loading,
+    error
+  } = (0, _reactHooks.useQuery)(ALL_PETS);
 
   const onSubmit = input => {
     setModal(false);
   };
+
+  if (loading) {
+    return _react.default.createElement(_Loader.default, null);
+  }
+
+  if (error) {
+    return _react.default.createElement("p", null, "error!");
+  }
 
   if (modal) {
     return _react.default.createElement(_NewPetModal.default, {
@@ -50464,7 +50488,9 @@ function Pets() {
     className: "col-xs-2"
   }, _react.default.createElement("button", {
     onClick: () => setModal(true)
-  }, "new pet")))), _react.default.createElement("section", null, _react.default.createElement(_PetsList.default, null)));
+  }, "new pet")))), _react.default.createElement("section", null, _react.default.createElement(_PetsList.default, {
+    pets: data.pets
+  })));
 }
 },{"react":"../node_modules/react/index.js","graphql-tag":"../node_modules/graphql-tag/src/index.js","@apollo/react-hooks":"../node_modules/@apollo/react-hooks/lib/react-hooks.esm.js","../components/PetsList":"src/components/PetsList.js","../components/NewPetModal":"src/components/NewPetModal.js","../components/Loader":"src/components/Loader.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
@@ -53647,7 +53673,9 @@ require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const Root = () => _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_App.default, null));
+const Root = () => _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactHooks.ApolloProvider, {
+  client: _client.default
+}, _react.default.createElement(_App.default, null)));
 
 _reactDom.default.render(_react.default.createElement(Root, null), document.getElementById('app'));
 
