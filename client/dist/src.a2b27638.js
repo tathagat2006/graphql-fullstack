@@ -42824,8 +42824,33 @@ gql.disableExperimentalFragmentVariables = disableExperimentalFragmentVariables;
 module.exports = gql;
 
 },{"graphql/language/parser":"../node_modules/graphql/language/parser.js"}],"src/components/PetBox.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"src/components/PetsList.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const PetBox = ({
+  pet
+}) => _react.default.createElement("div", {
+  className: "pet"
+}, _react.default.createElement("figure", null, _react.default.createElement("img", {
+  src: pet.img + `?pet=${pet.id}`,
+  alt: ""
+})), _react.default.createElement("div", {
+  className: "pet-name"
+}, pet.name), _react.default.createElement("div", {
+  className: "pet-type"
+}, pet.type));
+
+var _default = PetBox;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"src/components/PetsList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53499,6 +53524,11 @@ exports.HttpLink = HttpLink;
 },{"tslib":"../node_modules/tslib/tslib.es6.js","apollo-link":"../node_modules/apollo-link/lib/bundle.esm.js","apollo-link-http-common":"../node_modules/apollo-link-http-common/lib/bundle.esm.js"}],"src/client.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _apolloClient = require("apollo-client");
 
 var _apolloCacheInmemory = require("apollo-cache-inmemory");
@@ -53508,6 +53538,18 @@ var _apolloLinkHttp = require("apollo-link-http");
 var _graphqlTag = _interopRequireDefault(require("graphql-tag"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//to access a GraphQL server
+const link = new _apolloLinkHttp.HttpLink({
+  uri: 'http://localhost:4000'
+});
+const cache = new _apolloCacheInmemory.InMemoryCache();
+const client = new _apolloClient.ApolloClient({
+  link,
+  cache
+});
+var _default = client;
+exports.default = _default;
 },{"apollo-client":"../node_modules/apollo-client/bundle.esm.js","apollo-cache-inmemory":"../node_modules/apollo-cache-inmemory/lib/bundle.esm.js","apollo-link-http":"../node_modules/apollo-link-http/lib/bundle.esm.js","graphql-tag":"../node_modules/graphql-tag/src/index.js"}],"../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
